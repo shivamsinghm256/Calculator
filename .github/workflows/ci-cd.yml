@@ -42,14 +42,14 @@ jobs:
     # Step 5: Show Test Results
     - name: Show Test Results
       run: |
-        if [ -f target/surefire-reports/*.txt ]; then
+        if ls target/surefire-reports/*.txt 1> /dev/null 2>&1; then
             echo "Displaying test results:"
             cat target/surefire-reports/*.txt
         else
             echo "No test result files found."
         fi
     
-        if [ "${{ steps.run_tests.outcome }}" == "failure" ]; then
+        if [ "${{ steps.run_tests.outcome }}" = "failure" ]; then
             echo "❌ Tests failed."
         else
             echo "✅ Tests passed."
