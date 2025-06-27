@@ -46,22 +46,22 @@ jobs:
         echo "Tests failed. Displaying failed test cases:"
         cat target/surefire-reports/*.txt || true
 
-  deploy:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: build
+#   deploy:
+#     name: Deploy to Production
+#     runs-on: ubuntu-latest
+#     needs: build
 
-    steps:
-    # Step 1: Checkout the code
-    - name: Checkout Code
-      uses: actions/checkout@v3
+#     steps:
+#     # Step 1: Checkout the code
+#     - name: Checkout Code
+#       uses: actions/checkout@v3
 
-    # Step 2: Deploy (example using SSH)
-    - name: Deploy Application
-      run: |
-        ssh -o StrictHostKeyChecking=no user@your-server-ip <<EOF
-        cd /path/to/your/application
-        git pull origin main
-        ./mvnw clean package
-        java -jar target/calculator-backend.jar
-        EOF
+#     # Step 2: Deploy (example using SSH)
+#     - name: Deploy Application
+#       run: |
+#         ssh -o StrictHostKeyChecking=no user@your-server-ip <<EOF
+#         cd /path/to/your/application
+#         git pull origin main
+#         ./mvnw clean package
+#         java -jar target/calculator-backend.jar
+#         EOF
