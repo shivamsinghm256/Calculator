@@ -41,15 +41,20 @@ jobs:
 
     # Step 5: Show Test Results
     - name: Show Test Results
+      if: always()
+      env:
+        TEST_OUTCOME: ${{ steps.run_tests.outcome }}
       run: |
+        echo "🩺 Test outcome received: $TEST_OUTCOME"
+    
         if ls target/surefire-reports/*.txt 1> /dev/null 2>&1; then
-            echo "Displaying test results:"
+            echo "📄 Displaying test results:"
             cat target/surefire-reports/*.txt
         else
-            echo "No test result files found."
+            echo "⚠️ No test result files found."
         fi
     
-        if [ "${{ steps.run_tests.outcome }}" = "failure" ]; then
+        if [ "$TEST_OUTCOME" = "failure" ]; then
             echo "❌ Tests failed."
         else
             echo "✅ Tests passed."

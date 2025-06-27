@@ -10,9 +10,9 @@ class CalculatorServiceTest {
 
     @Test
     void testAdd() {
-        assertEquals(8, calculatorService.add(6, 3));
-        assertEquals(-2, calculatorService.add(-6, 3));
-        assertEquals(0, calculatorService.add(6, 0));
+        assertEquals(8, calculatorService.add(9, 3));
+        assertEquals(-2, calculatorService.add(-9, 3));
+        assertEquals(0, calculatorService.add(1, 0));
     }
 
     @Test
