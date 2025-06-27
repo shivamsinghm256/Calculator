@@ -41,10 +41,19 @@ jobs:
 
     # Step 5: Show Test Results
     - name: Show Test Results
-      if: failure()
       run: |
-        echo "Tests failed. Displaying failed test cases:"
-        cat target/surefire-reports/*.txt || true
+        if [ -f target/surefire-reports/*.txt ]; then
+            echo "Displaying test results:"
+            cat target/surefire-reports/*.txt
+        else
+            echo "No test result files found."
+        fi
+    
+        if [ "${{ steps.run_tests.outcome }}" == "failure" ]; then
+            echo "❌ Tests failed."
+        else
+            echo "✅ Tests passed."
+        fi
 
 #   deploy:
 #     name: Deploy to Production
